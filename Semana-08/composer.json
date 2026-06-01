@@ -1,5 +1,5 @@
 {
-    "name": "angel/semana07",
+    "name": "angel/semana08",
     "description": "Proyecto de pruebas unitarias en PHP",
     "require-dev": {
         "phpunit/phpunit": "^11"
