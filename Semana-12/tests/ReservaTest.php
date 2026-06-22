@@ -31,7 +31,7 @@ class ReservaTest extends TestCase
         new Reserva($cliente, $habitacion, "2020-01-01", "2026-12-20");
     }
 
-    public function testFechaSalidaMenorIngreso()
+    public function testFechaSalidaAnterior()
     {
         $this->expectException(Exception::class);
 
@@ -48,6 +48,13 @@ class ReservaTest extends TestCase
 
         $reserva = new Reserva($cliente, $habitacion, "2026-12-20", "2026-12-23");
 
+        $this->assertInstanceOf(Reserva::class, $reserva);
         $this->assertEquals(300, $reserva->calcularTotal());
+        $this->assertIsFloat($reserva->calcularTotal());
+        $this->assertGreaterThan(0, $reserva->calcularTotal());
+        $this->assertEquals(100, $habitacion->getPrecio());
+        $this->assertEquals("Angel", $cliente->getNombre());
+        $this->assertEquals("angel@gmail.com", $cliente->getEmail());
+        $this->assertEquals("999999999", $cliente->getTelefono());
     }
 }

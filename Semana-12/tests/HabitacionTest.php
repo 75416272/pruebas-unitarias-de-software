@@ -9,23 +9,38 @@ use App\Habitacion;
  */
 class HabitacionTest extends TestCase
 {
-    public function testNumeroInvalido()
+    public function testNumeroCero()
     {
         $this->expectException(Exception::class);
-
         new Habitacion(0, "Simple", 80);
     }
 
-    public function testPrecioInvalido()
+    public function testNumeroNegativo()
     {
         $this->expectException(Exception::class);
+        new Habitacion(-5, "Simple", 80);
+    }
 
+    public function testPrecioCero()
+    {
+        $this->expectException(Exception::class);
         new Habitacion(101, "Simple", 0);
     }
 
-    public function testReservarHabitacion()
+    public function testPrecioNegativo()
     {
-        $habitacion = new Habitacion(101, "Simple", 80);
+        $this->expectException(Exception::class);
+        new Habitacion(101, "Simple", -50);
+    }
+
+    public function testReservarHabitacionDisponible()
+    {
+        $habitacion = new Habitacion(101, "Simple", 100);
+
+        $this->assertTrue($habitacion->isDisponible());
+        $this->assertEquals(101, $habitacion->getNumero());
+        $this->assertEquals("Simple", $habitacion->getTipo());
+        $this->assertEquals(100, $habitacion->getPrecio());
 
         $habitacion->reservar();
 
@@ -36,8 +51,7 @@ class HabitacionTest extends TestCase
     {
         $this->expectException(Exception::class);
 
-        $habitacion = new Habitacion(101, "Simple", 80);
-
+        $habitacion = new Habitacion(101, "Simple", 100);
         $habitacion->reservar();
         $habitacion->reservar();
     }

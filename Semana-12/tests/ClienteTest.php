@@ -12,28 +12,12 @@ class ClienteTest extends TestCase
     public function testNombreVacio()
     {
         $this->expectException(Exception::class);
-
-        new Cliente("", "correo@gmail.com", "999999999");
+        new Cliente("", "correo@gmail.com", "921398632");
     }
 
     public function testEmailInvalido()
     {
         $this->expectException(Exception::class);
-
-        new Cliente("Angel", "correo_malo", "999999999");
-    }
-
-    public function testClienteValido()
-    {
-        $cliente = new Cliente(
-            "Angel",
-            "angel@gmail.com",
-            "999999999"
-        );
-
-        $this->assertEquals(
-            "Angel",
-            $cliente->getNombre()
-        );
+        new Cliente("Angel", "angelgmail.com", "921398632");
     }
 }
